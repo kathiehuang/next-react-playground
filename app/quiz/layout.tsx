@@ -3,7 +3,6 @@ export default function NestedLayout({ children, }: {
 }) {
     return (
         <nav>
-            This is my navigation
             {children}
         </nav>
     )
