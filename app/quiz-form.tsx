@@ -4,9 +4,9 @@ const sql = postgres(process.env.DATABASE_URL!, { ssl: { rejectUnauthorized: fal
 
 function Answer({ id }: { id: number }) {
     return (
-        <label htmlFor={`answer-${id}`}>
+        <label htmlFor={`answer-${id}`} className="my-2">
             Answer {id}
-            <input className="bg-gray-50 border border-gray-200 rounded p-1" type="text" name={`answer-${id}`} />
+            <input className="bg-gray-50 border border-gray-300 rounded-lg py-2 px-3 shadow-sm w-80 mx-4 focus:outline-none focus:border-gray-500" type="text" name={`answer-${id}`} />
             <input type="checkbox" name={`check-${id}`} />
         </label>
     )
@@ -40,25 +40,25 @@ export default function QuizForm() {
         revalidatePath("/");
     } 
     return (
-        <form action={createQuiz} className="flex flex-col mt-8 max-w-xs">
-            <h3 className="text-lg font-semibold">Create Quiz</h3>
-            <label htmlFor="title">
+        <form action={createQuiz} className="flex flex-col mt-8 max-w-md content-center mx-auto text-left">
+            <h3 className="text-lg font-semibold text-center">New Quiz</h3>
+            <label htmlFor="title" className="my-2">
                 Title
-                <input className="bg-gray-50 border border-gray-200 rounded p-1" type="text" name="title" />
+                <input className="bg-gray-50 border border-gray-300 rounded-lg py-2 mt-1 px-3 shadow-sm w-full focus:outline-none focus:border-gray-500" type="text" name="title" />
             </label>
-            <label htmlFor="description">
+            <label htmlFor="description" className="my-2">
                 Description
-                <input className="bg-gray-50 border border-gray-200 rounded p-1" type="text" name="description" />
+                <input className="bg-gray-50 border border-gray-300 rounded-lg py-2 px-3 mt-1 shadow-sm w-full focus:outline-none focus:border-gray-500" type="text" name="description" />
             </label>
-            <label htmlFor="question">
+            <label htmlFor="question" className="my-2">
                 Question
-                <input className="bg-gray-50 border border-gray-200 rounded p-1" type="text" name="question" />
+                <input className="bg-gray-50 border border-gray-300 rounded-lg py-2 px-3 mt-1 shadow-sm w-full focus:outline-none focus:border-gray-500" />
             </label>
             <div className="my-4"></div>
             <Answer id={1} />
             <Answer id={2} />
             <Answer id={3} />
-            <button type="submit" className="bg-gray-50 p-2 m-2 rounded hover:bg-gray-300 transition-all">Create Quiz</button>
+            <button type="submit" className="bg-gray-100 p-2 m-2 rounded-lg mb-4 hover:bg-gray-300 transition-all border border-gray-300">Create Quiz</button>
         </form>
     )
 }
