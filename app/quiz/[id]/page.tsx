@@ -1,6 +1,7 @@
 import postgres from "postgres";
 const sql = postgres(process.env.DATABASE_URL!, { ssl: { rejectUnauthorized: false } });
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 async function Quiz({ id, searchParams }: { id: string, searchParams: { show?: string }}) {
     const answers = await sql`SELECT q.quiz_id, q.title AS quiz_title, q.description AS quiz_description, q.question_text AS quiz_question, a.answer_id, a.answer_text, a.is_correct FROM quizzes AS q JOIN answers AS a ON q.quiz_id = a.quiz_id WHERE q.quiz_id = ${id}`;
@@ -30,7 +31,7 @@ async function Quiz({ id, searchParams }: { id: string, searchParams: { show?: s
 export default function QuizPage({ params, searchParams }: { params: { id: string }; searchParams: { show?: string }; }) {
     return (
         <section>
-            <div className="ml-4 mt-4"><a href="/" className="text-md">Home</a></div>
+            <div className="ml-4 mt-4"><Link href="/" className="text-md">Home</Link></div>
             <Quiz id={params.id} searchParams={searchParams} />
             <form action={async () => {
                 'use server';
